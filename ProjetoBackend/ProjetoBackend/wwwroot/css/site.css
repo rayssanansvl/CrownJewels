@@ -1,22 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 .btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+body {
+    font-family: 'Alegreya Sans SC', sans-serif;
+    margin: 0;
+}
+
+.social-icons a {
+    color: #b59879;
+    margin: 0 10px;
+    font-size: 24px;
+}
+
+footer {
+    background-color: #b59879;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin: 0;
+    width: 100%;
+    bottom: 0;
+}
+
+.font-alegreya {
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.text-custom-color {
+    color: #b59879;
+}
+
+.social-icons a {
+    color: #b59879;
+    margin: 0 10px;
+    font-size: 24px;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.search-input {
+    padding: 5px;
+    border: 2px solid #504742;
+    background-color: #D9D9D9;
+    border-radius: 5px;
+    flex-grow: 1;
+}
+
+.search-button {
+    background-color: #504742;
+    color: #F2EBE0;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+    .search-button:hover {
+        background-color: #403731;
+    }
+
+.create-link {
+    color: #504742;
+    text-decoration: none;
+    font-weight: bold
+}
+
+    .create-link:hover {
+        text-decoration: underline;
+    }
+
+.custom-table thead th {
+    background-color: #504742;
+    color: #f2ebe0;
+    font-weight: bold;
+    padding: 8px;
+    text-align: left;
+}
+
+.edit-icon i {
+    color: #3AE682;
+}
+
+.delete-icon i {
+    color: #FF0400;
+}
+
+.text-decoration-none {
+    text-decoration: none;
+}
+
+.custom-row {
+    background-color: #8B7C74;
+}
+
+    .custom-row td {
+        color: #f2ebe0;
+        padding: 8px;
+        text-align: left;
+    }
+
+.edit-icon i {
+    color: #3AE682;
+}
+
+.delete-icon i {
+    color: #FF0400;
+}
+
+.text-decoration-none {
+    text-decoration: none;
 }

@@ -4,15 +4,17 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h2 class="m-0 p-0 mt-5 fw-bold" style="text-shadow:0 4px 4px rgba(0,0,0,0.25);color:#504742">Fornecedores</h2>
 
-<form asp-action="Search" method="get">
-    <input type="text" name="nome" placeholder="Buscar fornecedor por nome..." />
-    <button type="submit"><ion-icon name="search"></ion-icon>Buscar</button>
+<form asp-action="Search" method="get" class="search-form">
+    <input type="text" name="nome" placeholder="Buscar cliente por nome..." class="search-input" />
+    <button type="submit" class="search-button">
+        <ion-icon name="search"></ion-icon>Buscar
+    </button>
 </form>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="create-link">Criar Novo</a>
 </p>
 <table class="table">
     <thead>

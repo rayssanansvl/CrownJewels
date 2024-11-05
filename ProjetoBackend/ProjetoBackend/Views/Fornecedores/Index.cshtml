@@ -16,7 +16,7 @@
 <p>
     <a asp-action="Create" class="create-link">Criar Novo</a>
 </p>
-<table class="table">
+<table class="table custom-table-fornecedor">
     <thead>
         <tr>
             <th>
@@ -37,7 +37,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="custom-row-fornecedor">
                 <td>
                     @Html.DisplayFor(modelItem => item.Nome)
                 </td>
@@ -51,9 +51,12 @@
                     @Html.DisplayFor(modelItem => item.CnpjCpf)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.FornecedorId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.FornecedorId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.FornecedorId">Delete</a>
+                    <a asp-action="Editar" asp-route-id="@item.FornecedorId" class="text-decoration-none edit-icon">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a asp-action="Deletar" asp-route-id="@item.FornecedorId" class="text-decoration-none delete-icon">
+                        <i class="bi bi-trash"></i>
+                    </a>
                 </td>
             </tr>
         }

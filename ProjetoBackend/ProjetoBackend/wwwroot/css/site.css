@@ -119,15 +119,15 @@ footer {
     text-decoration: none;
 }
 
-.custom-row {
+.custom-row td {
     background-color: #8B7C74;
 }
 
-    .custom-row td {
-        color: #f2ebe0;
-        padding: 8px;
-        text-align: left;
-    }
+.custom-row td {
+    color: #f2ebe0;
+    padding: 8px;
+    text-align: left;
+}
 
 .edit-icon i {
     color: #3AE682;
@@ -139,4 +139,37 @@ footer {
 
 .text-decoration-none {
     text-decoration: none;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.custom-row-fornecedor td {
+    background-color: #8B7C74;
+}
+
+.custom-row-fornecedor td {
+    color: #f2ebe0;
+    padding: 8px;
+    text-align: left;
+}
+
+.create-link {
+    color: #504742;
+    text-decoration: none;
+    font-weight: bold
+}
+
+    .create-link:hover {
+        text-decoration: underline;
+    }
+
+.custom-table-fornecedor thead th {
+    background-color: #504742;
+    color: #f2ebe0;
+    font-weight: bold;
+    padding: 8px;
+    text-align: left;
 }

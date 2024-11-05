@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ProjetoBackend.Models.Servico>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="m-0 p-0 mt-5 fw-bold" style="text-shadow:0 4px 4px rgba(0,0,0,0.25);color:#504742">Serviços</h2>
+
+<p>
+    <a asp-action="Create" class="create-link">Criar Novo</a>
+</p>
+<table class="table custom-table-servico">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ValorServico)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="custom-row-servico">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ValorServico)
+                </td>
+                <td>
+                    <a asp-action="Editar" asp-route-id="@item.ServicoId" class="text-decoration-none edit-icon">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a asp-action="Deletar" asp-route-id="@item.ServicoId" class="text-decoration-none delete-icon">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

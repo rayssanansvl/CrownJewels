@@ -39,7 +39,6 @@ footer {
     background-color: #b59879;
     color: white;
     text-align: center;
-    padding: 10px 0;
     margin: 0;
     width: 100%;
     bottom: 0;
@@ -119,8 +118,12 @@ footer {
     text-decoration: none;
 }
 
-.custom-row td {
+.custom-row:nth-child(odd) td {
     background-color: #8B7C74;
+}
+
+.custom-row:nth-child(even) td {
+    background-color: #B59879;
 }
 
 .custom-row td {
@@ -146,8 +149,12 @@ a {
     text-decoration: none;
 }
 
-.custom-row-fornecedor td {
+.custom-row-fornecedor:nth-child(odd) td {
     background-color: #8B7C74;
+}
+
+.custom-row-fornecedor:nth-child(even) td {
+    background-color: #B59879;
 }
 
 .custom-row-fornecedor td {
@@ -173,3 +180,288 @@ a {
     padding: 8px;
     text-align: left;
 }
+
+.custom-row-categoria:nth-child(odd) td {
+    background-color: #8B7C74; /* Cor para linhas ímpares */
+}
+
+.custom-row-categoria:nth-child(even) td {
+    background-color: #B59879; /* Cor para linhas pares */
+}
+
+.custom-row-categoria td {
+    color: #f2ebe0;
+    padding: 8px;
+    text-align: left;
+}
+
+.create-link {
+    color: #504742;
+    text-decoration: none;
+    font-weight: bold
+}
+
+    .create-link:hover {
+        text-decoration: underline;
+    }
+
+.custom-table-categoria thead th {
+    background-color: #504742;
+    color: #f2ebe0;
+    font-weight: bold;
+    padding: 8px;
+    text-align: left;
+}
+
+.custom-table-produto thead th {
+    background-color: #504742;
+    color: #f2ebe0;
+    font-weight: bold;
+    padding: 8px;
+    text-align: left;
+}
+
+.custom-row-produto:nth-child(odd) td {
+    background-color: #8B7C74; /* Cor para linhas ímpares */
+}
+
+.custom-row-produto:nth-child(even) td {
+    background-color: #B59879; /* Cor para linhas pares */
+}
+
+.custom-row-produto td {
+    color: #f2ebe0;
+    padding: 8px;
+    text-align: left;
+}
+
+.custom-table-servico thead th {
+    background-color: #504742;
+    color: #f2ebe0;
+    font-weight: bold;
+    padding: 8px;
+    text-align: left;
+}
+
+.custom-row-servico:nth-child(odd) td {
+    background-color: #8B7C74;
+}
+
+.custom-row-servico:nth-child(even) td {
+    background-color: #B59879;
+}
+
+.custom-row-servico td {
+    color: #f2ebe0;
+    padding: 8px;
+    text-align: left;
+}
+
+.custom-table-venda thead th {
+    background-color: #504742;
+    color: #f2ebe0;
+    font-weight: bold;
+    padding: 8px;
+    text-align: left;
+}
+
+.custom-row-venda:nth-child(odd) td {
+    background-color: #8B7C74; /* Cor para linhas ímpares */
+}
+
+.custom-row-venda:nth-child(even) td {
+    background-color: #B59879; /* Cor para linhas pares */
+}
+
+.custom-row-venda td {
+    color: #f2ebe0;
+    padding: 8px;
+    text-align: left;
+}
+
+.custom-table-compra thead th {
+    background-color: #504742;
+    color: #f2ebe0;
+    font-weight: bold;
+    padding: 8px;
+    text-align: left;
+}
+
+.custom-row-compra:nth-child(odd) td {
+    background-color: #8B7C74; /* Cor para linhas ímpares */
+}
+
+.custom-row-compra:nth-child(even) td {
+    background-color: #B59879; /* Cor para linhas pares */
+}
+
+.custom-row-compra td {
+    color: #f2ebe0;
+    padding: 8px;
+    text-align: left;
+}
+
+.register-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.register-title,
+.register-subtitle {
+    text-align: left; /* Alinha os textos à direita */
+    margin-right: 0; /* Remove margem à esquerda */
+}
+
+.register-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #5a4234;
+}
+
+.register-subtitle {
+    font-size: 14px;
+    color: #5a4234;
+    margin-bottom: 20px;
+}
+
+.register-form .form-group {
+    margin-bottom: 15px;
+}
+
+.register-form .form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #d3bca3;
+    border-radius: 4px;
+    color: #5a4234;
+    background-color: #D9D9D9; /* Cor de fundo dos campos editáveis */
+}
+
+.btn-register {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #504742;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    .btn-register:hover {
+        background-color: #504742;
+    }
+
+.small-bold-text {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #504742;
+    font-family: 'Anonymous Pro', monospace;
+}
+
+.text-back a {
+    font-family: 'Anonymous Pro', monospace;
+    font-weight: bold;
+    text-decoration: underline;
+    color: #B59879;
+}
+
+/* Contêiner principal */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Alegreya Sans SC', sans-serif;
+    color: #504742;
+    margin-top: 50px;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Título e subtítulo */
+.login-title {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 5px;
+    text-align: left;
+    width: 100%;
+}
+
+.login-subtitle {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+/* Formulário */
+.login-form {
+    width: 100%;
+}
+
+/* Campos de entrada */
+.login-input-group {
+    margin-bottom: 15px;
+}
+
+.login-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #504742;
+    background-color: #D9D9D9;
+}
+
+/* Checkbox "Lembrar-me" */
+.login-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.checkbox-label {
+    font-size: 14px;
+    color: #504742;
+}
+
+.login-checkbox input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Botão de Login */
+.login-button-container {
+    margin-bottom: 15px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #504742;
+    color: #F2EBE0;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px; /* Bordas arredondadas */
+}
+
+    .login-button:hover {
+        background-color: #3e3a32;
+    }
+
+/* Links */
+.login-links {
+    text-align: left;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.login-link {
+    color: #504742;
+    text-decoration: none;
+}
+
+    .login-link:hover {
+        text-decoration: underline;
+    }

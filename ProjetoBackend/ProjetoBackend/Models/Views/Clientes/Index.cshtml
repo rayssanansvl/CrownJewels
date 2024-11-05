@@ -41,10 +41,10 @@
                 <td>@Html.DisplayFor(modelItem => item.DataCadastro)</td>
                 <td>@Html.DisplayFor(modelItem => item.CadastroAtivo)</td>
                 <td>
-                    <a asp-action="Editar" asp-route-id="@item.ClienteId" class="text-decoration-none edit-icon">
+                    <a asp-action="Edit" asp-route-id="@item.ClienteId" class="text-decoration-none edit-icon">
                         <i class="bi bi-pencil"></i>
                     </a>
-                    <a asp-action="Deletar" asp-route-id="@item.ClienteId" class="text-decoration-none delete-icon">
+                    <a asp-action="Delete" asp-route-id="@item.ClienteId" class="text-decoration-none delete-icon">
                         <i class="bi bi-trash"></i>
                     </a>
                 </td>
@@ -52,4 +52,5 @@
         }
     </tbody>
 </table>
+
 

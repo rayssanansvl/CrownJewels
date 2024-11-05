@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h2 class="m-0 p-0 mt-5 fw-bold" style="text-shadow:0 4px 4px rgba(0,0,0,0.25);color:#504742">Vendas</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="create-link">Criar Novo</a>
 </p>
-<table class="table">
+<table class="table custom-table-venda">
     <thead>
         <tr>
             <th>
@@ -30,7 +30,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="custom-row-venda">
                 <td>
                     @Html.DisplayFor(modelItem => item.NotaFiscal)
                 </td>
@@ -44,11 +44,12 @@
                     @Html.DisplayFor(modelItem => item.ValorTotal)
                 </td>
                 <td>
-                    <a asp-controller="ItensVendas" asp-action="Index" asp-route-id="@item.VendaId">Produtos</a> |
-                    <a asp-controller="ServicosVendas" asp-action="Index" asp-route-id="@item.VendaId">Serviços</a> |
-                    <a asp-action="Edit" asp-route-id="@item.VendaId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.VendaId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.VendaId">Delete</a>
+                    <a asp-action="Editar" asp-route-id="@item.VendaId" class="text-decoration-none edit-icon">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a asp-action="Deletar" asp-route-id="@item.VendaId" class="text-decoration-none delete-icon">
+                        <i class="bi bi-trash"></i>
+                    </a>
                 </td>
             </tr>
         }

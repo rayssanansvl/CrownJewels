@@ -284,10 +284,7 @@ namespace ProjetoBackend.Migrations
                     b.Property<DateTime?>("DataCompra")
                         .HasColumnType("datetime2");
 
-                    b.Property<Guid>("FornecedorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int?>("FornecedorId1")
+                    b.Property<int>("FornecedorId")
                         .HasColumnType("int");
 
                     b.Property<double?>("ValorTotal")
@@ -295,7 +292,7 @@ namespace ProjetoBackend.Migrations
 
                     b.HasKey("CompraId");
 
-                    b.HasIndex("FornecedorId1");
+                    b.HasIndex("FornecedorId");
 
                     b.ToTable("Compras", (string)null);
                 });
@@ -531,7 +528,9 @@ namespace ProjetoBackend.Migrations
                 {
                     b.HasOne("ProjetoBackend.Models.Fornecedor", "Fornecedor")
                         .WithMany()
-                        .HasForeignKey("FornecedorId1");
+                        .HasForeignKey("FornecedorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Fornecedor");
                 });

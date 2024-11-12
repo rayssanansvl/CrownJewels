@@ -8,7 +8,7 @@ namespace ProjetoBackend.Models
         public Guid CompraId { get; set; }
         [Required(ErrorMessage = "Fornecedor")]
         [Display(Name = "Fornecedor")]
-        public Guid FornecedorId { get; set; }
+        public int FornecedorId { get; set; }
         [Display(Name = "Fornecedor")]
         public Fornecedor? Fornecedor { get; set; }
         [Display(Name = "Data da Compra")]

@@ -16,49 +16,52 @@
 <p>
     <a asp-action="Create" class="create-link">Criar Novo</a>
 </p>
-<table class="table custom-table-fornecedor">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Nome)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Celular)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CnpjCpf)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr class="custom-row-fornecedor">
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Celular)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CnpjCpf)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.FornecedorId" class="text-decoration-none edit-icon">
-                        <i class="bi bi-pencil"></i>
-                    </a>
-                    <a asp-action="Delete" asp-route-id="@item.FornecedorId" class="text-decoration-none delete-icon">
-                        <i class="bi bi-trash"></i>
-                    </a>
-                </td>
+<div class="table-responsive">
+    <table class="table custom-table-fornecedor">
+        <thead>
+            <div>
+            <tr>
+                <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                </th>
+                <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                        @Html.DisplayNameFor(model => model.Celular)
+                </th>
+                <th>
+                        @Html.DisplayNameFor(model => model.CnpjCpf)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="custom-row-fornecedor">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Celular)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CnpjCpf)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.FornecedorId" class="text-decoration-none edit-icon">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.FornecedorId" class="text-decoration-none delete-icon">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

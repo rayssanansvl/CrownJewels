@@ -572,3 +572,24 @@ a {
     background-color: #D9D9D9;
     border: 1px solid #8B7C74;
 }
+
+/* Estilos personalizados */
+.compra-submit-custom {
+    background-color: #B59879;
+    color: white;
+    border: none;
+}
+
+.compra-back-link-custom {
+    color: #B59879;
+    text-decoration: none;
+}
+
+    .compra-back-link-custom:hover {
+        text-decoration: underline;
+    }
+
+.compra-input-custom {
+    background-color: #D9D9D9;
+    border: 1px solid #8B7C74;
+}

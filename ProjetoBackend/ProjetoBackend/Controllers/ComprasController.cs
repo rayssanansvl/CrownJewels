@@ -46,6 +46,7 @@ namespace ProjetoBackend.Controllers
         // GET: Compras/Create
         public IActionResult Create()
         {
+            ViewData["FornecedorId"] = new SelectList(_context.Fornecedores, "FornecedorId", "Nome");
             return View();
         }
 
@@ -59,10 +60,13 @@ namespace ProjetoBackend.Controllers
             if (ModelState.IsValid)
             {
                 compra.CompraId = Guid.NewGuid();
+                compra.DataCompra = DateTime.Now;
                 _context.Add(compra);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewData["FornecedorId"] = new SelectList(_context.Fornecedores, "FornecedorId", "Nome", compra.FornecedorId);
             return View(compra);
         }
 
@@ -79,6 +83,7 @@ namespace ProjetoBackend.Controllers
             {
                 return NotFound();
             }
+            ViewData["FornecedorId"] = new SelectList(_context.Fornecedores, "FornecedorId", "Nome", compra.FornecedorId);
             return View(compra);
         }
 
@@ -114,6 +119,7 @@ namespace ProjetoBackend.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["FornecedorId"] = new SelectList(_context.Fornecedores, "FornecedorId", "Nome", compra.FornecedorId);
             return View(compra);
         }
 

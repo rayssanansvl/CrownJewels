@@ -1,0 +1,42 @@
+﻿@model ProjetoBackend.Models.Venda
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2 class="m-0 p-0 mt-5 fw-bold" style="text-shadow:0 4px 4px rgba(0,0,0,0.25);color:#504742">Criar</h2>
+
+<h4 class="small-bold-text">Venda</h4>
+<hr />
+<div class="small-bold-text">
+    <div class="create-container">
+        <form asp-action="Create" class="create-form">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <div class="row mb-3">
+                <div class="form-group col-md-7">
+                    <label asp-for="ClienteId" class="control-label"></label>
+                    <select asp-for="ClienteId" class="form-control create-input" asp-items="ViewBag.ClienteId" style="background-color: #d9d9d9; border-color: #504742;"></select>
+                </div>
+                <div class="form-group col-md-5">
+                    <label asp-for="ValorTotal" class="control-label"></label>
+                    <input asp-for="ValorTotal" readonly="readonly" value="0.00" class="form-control create-input" style="background-color: #d9d9d9; border-color: #504742;" />
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Criar" class="btn" style="background-color: #B59879; border-color: #B59879; color: white; width: 10%;" />
+            </div>
+
+            <div class="text-back">
+                <a asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

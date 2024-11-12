@@ -1,0 +1,63 @@
+﻿@model ProjetoBackend.Models.Venda
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h2 class="m-0 p-0 mt-5 fw-bold" style="text-shadow:0 4px 4px rgba(0,0,0,0.25);color:#504742">Editar</h2>
+
+<h4 class="small-bold-text">Venda</h4>
+<hr />
+<div class="venda-create-container">
+    <div class="small-bold-text">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="venda-validation-summary text-danger mb-3"></div>
+
+            <!-- Campo oculto para VendaId -->
+            <input type="hidden" asp-for="VendaId" />
+
+            <!-- Linha 1: Nota Fiscal e Cliente -->
+            <div class="venda-row row mb-3">
+                <div class="venda-form-group form-group col-md-8">
+                    <label asp-for="NotaFiscal" class="venda-label control-label"></label>
+                    <input asp-for="NotaFiscal" class="venda-input form-control venda-input-custom" />
+                    <span asp-validation-for="NotaFiscal" class="venda-validation text-danger"></span>
+                </div>
+                <div class="venda-form-group form-group col-md-4">
+                    <label asp-for="ClienteId" class="venda-label control-label"></label>
+                    <select asp-for="ClienteId" class="venda-select form-control venda-input-custom" asp-items="ViewBag.ClienteId"></select>
+                    <span asp-validation-for="ClienteId" class="venda-validation text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Linha 2: Data da Venda e Valor Total -->
+            <div class="venda-row row mb-4">
+                <div class="venda-form-group form-group col-md-8">
+                    <label asp-for="DataVenda" class="venda-label control-label"></label>
+                    <input asp-for="DataVenda" class="venda-input form-control venda-input-custom" />
+                    <span asp-validation-for="DataVenda" class="venda-validation text-danger"></span>
+                </div>
+                <div class="venda-form-group form-group col-md-4">
+                    <label asp-for="ValorTotal" class="venda-label control-label"></label>
+                    <input asp-for="ValorTotal" class="venda-input form-control venda-input-custom" />
+                    <span asp-validation-for="ValorTotal" class="venda-validation text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Botão Salvar e Link Voltar abaixo com espaçamento -->
+            <div class="form-group mt-3">
+                <input type="submit" value="Salvar" class="btn" style="background-color: #B59879; border-color: #B59879; color: white; width: 10%;" />
+            </div>
+            <div class="text-back">
+                <a asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+

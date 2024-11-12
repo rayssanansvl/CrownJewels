@@ -1,0 +1,40 @@
+﻿@model ProjetoBackend.Models.Cliente
+@{
+    ViewData["Título"] = "Excluir";
+}
+
+<h2 class="m-0 p-0 mt-5 fw-bold" style="text-shadow:0 4px 4px rgba(0,0,0,0.25);color:#504742">Deletar</h2>
+<h4 class="small-bold-text">Tem certeza de que deseja excluir isto?</h4>
+
+<div>
+    <hr />
+    <dl class="row" style="background-color: #b59879; color: white; width: 100%; margin-bottom: 70px; border-width: 10px; border-style: solid; border-color: #b59879;">
+        <dt class="col-sm-2">@Html.DisplayNameFor(modelo => modelo.Nome)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(modelo => modelo.Nome)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(modelo => modelo.Email)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(modelo => modelo.Email)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(modelo => modelo.CnpjCpf)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(modelo => modelo.CnpjCpf)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(modelo => modelo.Celular)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(modelo => modelo.Celular)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(modelo => modelo.DataNascimento)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(modelo => modelo.DataNascimento)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(modelo => modelo.DataCadastro)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(modelo => modelo.DataCadastro)</dd>
+
+        <dt class="col-sm-2">@Html.DisplayNameFor(modelo => modelo.CadastroAtivo)</dt>
+        <dd class="col-sm-10">@Html.DisplayFor(modelo => modelo.CadastroAtivo)</dd>
+    </dl>
+
+    <form asp-action="Delete" class="text-center">
+        <input type="hidden" asp-for="ClienteId" />
+        <input type="submit" value="Deletar" class="btn" style="background-color: #FF0400; color: white; width: 120px; margin-right: 10px;" />
+        <a asp-action="Index" style="color: #504742; text-decoration: none; margin-left: 10px;">Voltar</a>
+    </form>
+</div>
+

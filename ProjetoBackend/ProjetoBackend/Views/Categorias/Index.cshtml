@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ProjetoBackend.Models.Categoria>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="m-0 p-0 mt-5 fw-bold" style="text-shadow:0 4px 4px rgba(0,0,0,0.25);color:#504742">Categoria de Produtos</h2>
+
+<p>
+    <a asp-action="Create" class="create-link">Criar Novo</a>
+</p>
+<table class="table custom-table-categoria">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="custom-row-categoria">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CategoriaId" class="text-decoration-none edit-icon">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.CategoriaId" class="text-decoration-none delete-icon">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

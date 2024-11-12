@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ProjetoBackend.Models.Fornecedor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2 class="m-0 p-0 mt-5 fw-bold" style="text-shadow:0 4px 4px rgba(0,0,0,0.25);color:#504742">Fornecedores</h2>
+
+<form asp-action="Search" method="get" class="search-form">
+    <input type="text" name="nome" placeholder="Buscar cliente por nome..." class="search-input" />
+    <button type="submit" class="search-button">
+        <ion-icon name="search"></ion-icon>Buscar
+    </button>
+</form>
+
+<p>
+    <a asp-action="Create" class="create-link">Criar Novo</a>
+</p>
+<table class="table custom-table-fornecedor">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Celular)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CnpjCpf)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="custom-row-fornecedor">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Celular)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CnpjCpf)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.FornecedorId" class="text-decoration-none edit-icon">
+                        <i class="bi bi-pencil"></i>
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@item.FornecedorId" class="text-decoration-none delete-icon">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

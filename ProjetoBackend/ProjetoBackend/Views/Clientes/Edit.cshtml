@@ -1,0 +1,82 @@
+﻿@model ProjetoBackend.Models.Cliente
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h2 class="m-0 p-0 mt-5 fw-bold" style="text-shadow:0 4px 4px rgba(0,0,0,0.25);color:#504742">Editar</h2>
+
+<h4 class="small-bold-text">Cliente</h4>
+<hr />
+<div class="venda-create-container">
+    <div class="small-bold-text">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="venda-validation-summary text-danger mb-3"></div>
+
+            <!-- Campo oculto para ClienteId -->
+            <input type="hidden" asp-for="ClienteId" />
+
+            <!-- Linha 1: Nome e Celular -->
+            <div class="venda-row row mb-3">
+                <div class="venda-form-group form-group col-md-6">
+                    <label asp-for="Nome" class="venda-label control-label"></label>
+                    <input asp-for="Nome" class="venda-input form-control venda-input-custom" />
+                    <span asp-validation-for="Nome" class="venda-validation text-danger"></span>
+                </div>
+                <div class="venda-form-group form-group col-md-6">
+                    <label asp-for="Celular" class="venda-label control-label"></label>
+                    <input asp-for="Celular" class="venda-input form-control venda-input-custom" />
+                    <span asp-validation-for="Celular" class="venda-validation text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Linha 2: Email, DataNascimento e CadastroAtivo -->
+            <div class="venda-row row mb-4">
+                <div class="venda-form-group form-group col-md-6">
+                    <label asp-for="Email" class="venda-label control-label"></label>
+                    <input asp-for="Email" class="venda-input form-control venda-input-custom" />
+                    <span asp-validation-for="Email" class="venda-validation text-danger"></span>
+                </div>
+                <div class="venda-form-group form-group col-md-4">
+                    <label asp-for="DataNascimento" class="venda-label control-label"></label>
+                    <input asp-for="DataNascimento" class="venda-input form-control venda-input-custom" />
+                    <span asp-validation-for="DataNascimento" class="venda-validation text-danger"></span>
+                </div>
+                <div class="venda-form-group form-group col-md-2">
+                    <label asp-for="CadastroAtivo" class="venda-label control-label"></label>
+                    <input asp-for="CadastroAtivo" class="venda-input form-control venda-input-custom" />
+                    <span asp-validation-for="CadastroAtivo" class="venda-validation text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Linha 3: CnpjCpf e DataCadastro -->
+            <div class="venda-row row mb-4">
+                <div class="venda-form-group form-group col-md-6">
+                    <label asp-for="CnpjCpf" class="venda-label control-label"></label>
+                    <input asp-for="CnpjCpf" class="venda-input form-control venda-input-custom" />
+                    <span asp-validation-for="CnpjCpf" class="venda-validation text-danger"></span>
+                </div>
+                <div class="venda-form-group form-group col-md-6">
+                    <label asp-for="DataCadastro" class="venda-label control-label"></label>
+                    <input asp-for="DataCadastro" class="venda-input form-control venda-input-custom" />
+                    <span asp-validation-for="DataCadastro" class="venda-validation text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Botão Salvar e Link Voltar abaixo com espaçamento -->
+            <div class="form-group mt-3">
+                <input type="submit" value="Salvar" class="btn" style="background-color: #B59879; border-color: #B59879; color: white; width: 10%;" />
+            </div>
+            <div class="text-back">
+                <a asp-action="Index">Voltar</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

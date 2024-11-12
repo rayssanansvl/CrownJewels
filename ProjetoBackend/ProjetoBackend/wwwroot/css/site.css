@@ -465,3 +465,110 @@ a {
     .login-link:hover {
         text-decoration: underline;
     }
+
+.produto-title, .produto-subtitle {
+    color: #5a4234;
+}
+
+.produto-form-group .produto-input, .produto-form-group .produto-select {
+    background-color: #d9d9d9;
+    border: 1px solid #504742;
+}
+
+.produto-label {
+    color: #5a4234;
+}
+
+.produto-button-container .produto-submit {
+    background-color: #B59879;
+    border: none; /* Remove a borda do botão */
+}
+
+    .produto-button-container .produto-submit:hover {
+        background-color: #a5826b;
+    }
+
+.produto-back-link .produto-link {
+    color: #B59879; /* Define a cor do link voltar */
+}
+
+    .produto-back-link .produto-link:hover {
+        color: #a5826b;
+    }
+
+.produto-button-container {
+    color: #B59879;
+}
+
+.produto-back-link {
+    color: #B59879; /* Define a cor do link voltar */
+}
+
+/* CSS para os formulários de criação e edição de produtos */
+
+/* Estilização dos títulos */
+.produto-title, .produto-subtitle {
+    color: #5a4234;
+}
+
+/* Estilização dos campos de entrada e select */
+.produto-form-group .produto-input,
+.produto-form-group .produto-select {
+    background-color: #d9d9d9;
+    border: 1px solid #504742;
+}
+
+/* Estilização das labels */
+.produto-label {
+    color: #5a4234;
+}
+
+/* Estilização do botão "Criar"/"Salvar" */
+.produto-button-container .produto-submit {
+    background-color: #B59879;
+    color: white;
+    width: 10%; /* Torna o botão mais largo */
+    padding: 10px; /* Aumenta a altura para um clique mais confortável */
+}
+
+    .produto-button-container .produto-submit:hover {
+        background-color: #a5826b;
+    }
+
+/* Estilização do link "Voltar" */
+.produto-back-link {
+    margin-top: 20px; /* Aumenta o espaçamento entre o botão e o link */
+}
+
+    .produto-back-link .produto-link {
+        color: #B59879;
+        text-decoration: none;
+        padding: 8px 16px;
+        display: inline-block;
+    }
+
+        .produto-back-link .produto-link:hover {
+            background-color: #a5826b;
+            color: white;
+        }
+
+/* Estilos personalizados */
+.venda-submit-custom {
+    background-color: #B59879;
+    color: white;
+    border: none;
+}
+
+.venda-back-link-custom {
+    color: #B59879;
+    text-decoration: none;
+}
+
+    .venda-back-link-custom:hover {
+        text-decoration: underline;
+    }
+
+.venda-input-custom {
+    background-color: #D9D9D9;
+    border: 1px solid #8B7C74;
+}

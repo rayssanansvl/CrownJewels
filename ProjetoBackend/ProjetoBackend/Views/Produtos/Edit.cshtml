@@ -1,0 +1,62 @@
+﻿@model ProjetoBackend.Models.Produto
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h2 class="m-0 p-0 mt-5 fw-bold" style="text-shadow:0 4px 4px rgba(0,0,0,0.25);color:#504742">Editar</h2>
+
+<h4 class="small-bold-text">Produto</h4>
+<hr />
+
+<div class="produto-create-container">
+    <form asp-action="Edit">
+        <div asp-validation-summary="ModelOnly" class="produto-validation-summary text-danger mb-3"></div>
+
+        <!-- Campo oculto para ProdutoId -->
+        <input type="hidden" asp-for="ProdutoId" />
+        <!-- Linha 1: Nome e Preço -->
+        <div class="small-bold-text">
+            <div class="produto-row row mb-3">
+                <div class="produto-form-group form-group col-md-8">
+                    <label asp-for="Nome" class="produto-label control-label"></label>
+                    <input asp-for="Nome" class="produto-input form-control" />
+                    <span asp-validation-for="Nome" class="produto-validation text-danger"></span>
+                </div>
+                <div class="produto-form-group form-group col-md-4">
+                    <label asp-for="Preco" class="produto-label control-label"></label>
+                    <input asp-for="Preco" class="produto-input form-control" />
+                    <span asp-validation-for="Preco" class="produto-validation text-danger"></span>
+                </div>
+            </div>
+
+            <!-- Linha 2: Categoria e Estoque -->
+            <div class="produto-row row mb-4">
+                <div class="produto-form-group form-group col-md-8">
+                    <label asp-for="CategoriaId" class="produto-label control-label"></label>
+                    <select asp-for="CategoriaId" class="produto-select form-control" asp-items="ViewBag.CategoriaId"></select>
+                    <span asp-validation-for="CategoriaId" class="produto-validation text-danger"></span>
+                </div>
+                <div class="produto-form-group form-group col-md-4">
+                    <label asp-for="Estoque" class="produto-label control-label"></label>
+                    <input asp-for="Estoque" class="produto-input form-control" />
+                    <span asp-validation-for="Estoque" class="produto-validation text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <!-- Botão Save e Link Voltar abaixo com espaçamento -->
+        <div class="form-group mt-3">
+            <input type="submit" value="Salvar" class="btn" style="background-color: #B59879; border-color: #B59879; color: white; width: 10%;" />
+        </div>
+        <div class="text-back">
+            <a asp-action="Index">Voltar</a>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

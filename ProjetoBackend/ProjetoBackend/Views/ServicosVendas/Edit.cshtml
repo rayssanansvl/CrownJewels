@@ -1,10 +1,10 @@
 ﻿@model ProjetoBackend.Models.ServicoVenda
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Edit</h1>
+<h1>Editar</h1>
 
 <h4>ServicoVenda</h4>
 <hr />
@@ -35,5 +35,7 @@
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

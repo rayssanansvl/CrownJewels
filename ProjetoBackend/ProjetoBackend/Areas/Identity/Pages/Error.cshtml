@@ -10,14 +10,15 @@
 @if (Model.ShowRequestId)
 {
     <p>
-        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+        <strong>ID da Solicitação:</strong> <code>@Model.RequestId</code>
     </p>
 }
 
-<h3>Development Mode</h3>
+<h3>Modo de Desenvolvimento</h3>
 <p>
-    Swapping to <strong>Development</strong> environment will display more detailed information about the error that occurred.
+    Trocar para o ambiente <strong>Desenvolvimento</strong> exibirá informações mais detalhadas sobre o erro que ocorreu.
 </p>
 <p>
-    <strong>Development environment should not be enabled in deployed applications</strong>, as it can result in sensitive information from exceptions being displayed to end users. For local debugging, development environment can be enabled by setting the <strong>ASPNETCORE_ENVIRONMENT</strong> environment variable to <strong>Development</strong>, and restarting the application.
+    <strong>O ambiente de desenvolvimento não deve ser habilitado em aplicações implantadas</strong>, pois pode resultar na exibição de informações sensíveis de exceções para os usuários finais. Para depuração local, o ambiente de desenvolvimento pode ser habilitado configurando a variável de ambiente <strong>ASPNETCORE_ENVIRONMENT</strong> para <strong>Desenvolvimento</strong> e reiniciando a aplicação.
 </p>
+

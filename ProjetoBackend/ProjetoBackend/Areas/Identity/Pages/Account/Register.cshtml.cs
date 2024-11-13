@@ -1,5 +1,5 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
+﻿// Licenciado para a .NET Foundation sob um ou mais acordos.
+// A .NET Foundation licencia este arquivo sob a licença MIT.
 #nullable disable
 
 using System;
@@ -46,56 +46,56 @@ namespace ProjetoBackend.Areas.Identity.Pages.Account
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Esta API oferece suporte à infraestrutura padrão da UI do ASP.NET Core Identity e não é destinada ao uso
+        ///     direto no seu código. Esta API pode mudar ou ser removida em versões futuras.
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Esta API oferece suporte à infraestrutura padrão da UI do ASP.NET Core Identity e não é destinada ao uso
+        ///     direto no seu código. Esta API pode mudar ou ser removida em versões futuras.
         /// </summary>
         public string ReturnUrl { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Esta API oferece suporte à infraestrutura padrão da UI do ASP.NET Core Identity e não é destinada ao uso
+        ///     direto no seu código. Esta API pode mudar ou ser removida em versões futuras.
         /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Esta API oferece suporte à infraestrutura padrão da UI do ASP.NET Core Identity e não é destinada ao uso
+        ///     direto no seu código. Esta API pode mudar ou ser removida em versões futuras.
         /// </summary>
         public class InputModel
         {
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Esta API oferece suporte à infraestrutura padrão da UI do ASP.NET Core Identity e não é destinada ao uso
+            ///     direto no seu código. Esta API pode mudar ou ser removida em versões futuras.
             /// </summary>
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "O Campo E-mail é Obrigatório")]
+            [EmailAddress(ErrorMessage = "Formato do E-mail Inválido!")]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Esta API oferece suporte à infraestrutura padrão da UI do ASP.NET Core Identity e não é destinada ao uso
+            ///     direto no seu código. Esta API pode mudar ou ser removida em versões futuras.
             /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "O Campo Senha é obrigatório")]
+            [StringLength(100, ErrorMessage = "O {0} deve ter pelo menos {2} e no máximo {1} caracteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Senha")]
             public string Password { get; set; }
 
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Esta API oferece suporte à infraestrutura padrão da UI do ASP.NET Core Identity e não é destinada ao uso
+            ///     direto no seu código. Esta API pode mudar ou ser removida em versões futuras.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Confirmar senha")]
+            [Compare("Password", ErrorMessage = "A senha e a confirmação de senha não coincidem.")]
             public string ConfirmPassword { get; set; }
         }
 
@@ -120,7 +120,7 @@ namespace ProjetoBackend.Areas.Identity.Pages.Account
 
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User created a new account with password.");
+                    _logger.LogInformation("Usuário criou uma nova conta com senha.");
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
@@ -131,8 +131,8 @@ namespace ProjetoBackend.Areas.Identity.Pages.Account
                         values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
                         protocol: Request.Scheme);
 
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await _emailSender.SendEmailAsync(Input.Email, "Confirme seu email",
+                        $"Por favor, confirme sua conta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicando aqui</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -150,7 +150,7 @@ namespace ProjetoBackend.Areas.Identity.Pages.Account
                 }
             }
 
-            // If we got this far, something failed, redisplay form
+            // Se chegamos até aqui, algo falhou, reexibir o formulário
             return Page();
         }
 
@@ -162,9 +162,9 @@ namespace ProjetoBackend.Areas.Identity.Pages.Account
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(IdentityUser)}'. " +
-                    $"Ensure that '{nameof(IdentityUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+                throw new InvalidOperationException($"Não é possível criar uma instância de '{nameof(IdentityUser)}'. " +
+                    $"Certifique-se de que '{nameof(IdentityUser)}' não é uma classe abstrata e possui um construtor sem parâmetros, ou, alternativamente, " +
+                    $"sobrescreva a página de registro em /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
 
@@ -172,9 +172,10 @@ namespace ProjetoBackend.Areas.Identity.Pages.Account
         {
             if (!_userManager.SupportsUserEmail)
             {
-                throw new NotSupportedException("The default UI requires a user store with email support.");
+                throw new NotSupportedException("A UI padrão exige um repositório de usuários com suporte a email.");
             }
             return (IUserEmailStore<IdentityUser>)_userStore;
         }
     }
 }
+

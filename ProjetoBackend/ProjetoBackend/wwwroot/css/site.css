@@ -593,3 +593,10 @@ a {
     background-color: #D9D9D9;
     border: 1px solid #8B7C74;
 }
+
+.login-title-alteration {
+    font-size: 30px;
+    margin-bottom: 5px;
+    text-align: left;
+    width: 100%;
+}

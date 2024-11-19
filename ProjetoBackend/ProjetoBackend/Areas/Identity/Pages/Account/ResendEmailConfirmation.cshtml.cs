@@ -1,5 +1,5 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
+﻿// Licenciado para a .NET Foundation sob um ou mais contratos.
+// A .NET Foundation licencia este arquivo sob a licença MIT.
 #nullable disable
 
 using System;
@@ -29,21 +29,21 @@ namespace ProjetoBackend.Areas.Identity.Pages.Account
         }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Esta API dá suporte à infraestrutura padrão da interface do usuário do ASP.NET Core Identity e não se destina a ser usada
+        ///     diretamente do seu código. Esta API pode mudar ou ser removida em versões futuras.
         /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
         /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
+        ///     Esta API dá suporte à infraestrutura padrão da interface do usuário do ASP.NET Core Identity e não se destina a ser usada
+        ///     diretamente do seu código. Esta API pode mudar ou ser removida em versões futuras.
         /// </summary>
         public class InputModel
         {
             /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
+            ///     Esta API dá suporte à infraestrutura padrão da interface do usuário do ASP.NET Core Identity e não se destina a ser usada
+            ///     diretamente do seu código. Esta API pode mudar ou ser removida em versões futuras.
             /// </summary>
             [Required]
             [EmailAddress]
@@ -64,7 +64,7 @@ namespace ProjetoBackend.Areas.Identity.Pages.Account
             var user = await _userManager.FindByEmailAsync(Input.Email);
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+                ModelState.AddModelError(string.Empty, "E-mail de verificação enviado. Por favor, verifique seu e-mail.");
                 return Page();
             }
 
@@ -78,11 +78,12 @@ namespace ProjetoBackend.Areas.Identity.Pages.Account
                 protocol: Request.Scheme);
             await _emailSender.SendEmailAsync(
                 Input.Email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                "Confirme seu e-mail",
+                $"Por favor, confirme sua conta clicando <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>aqui</a>.");
 
-            ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+            ModelState.AddModelError(string.Empty, "E-mail de verificação enviado. Por favor, verifique seu e-mail.");
             return Page();
         }
     }
 }
+

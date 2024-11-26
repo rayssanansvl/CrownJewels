@@ -67,7 +67,8 @@ namespace ProjetoBackend.Controllers
                 venda.VendaId = Guid.NewGuid();
                 _context.Add(venda);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index", "ItensVendas", new { id = venda.VendaId });
+                //return RedirectToAction(nameof(Index));
             }
             ViewData["ClienteId"] = new SelectList(_context.Clientes, "ClienteId", "Nome", venda.ClienteId);
             return View(venda);

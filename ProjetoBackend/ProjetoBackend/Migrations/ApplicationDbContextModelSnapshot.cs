@@ -378,7 +378,7 @@ namespace ProjetoBackend.Migrations
 
                     b.HasIndex("VendaId");
 
-                    b.ToTable("ItensVenda");
+                    b.ToTable("ItensVenda", (string)null);
                 });
 
             modelBuilder.Entity("ProjetoBackend.Models.Produto", b =>

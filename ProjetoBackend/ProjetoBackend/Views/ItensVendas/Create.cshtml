@@ -1,57 +1,81 @@
-﻿@model ProjetoBackend.Models.ItemVenda
+﻿<link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap" rel="stylesheet">
+@model ProjetoBackend.Models.ItemVenda
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h2 class="m-0 p-0 mt-5 fw-bold" style="text-shadow:0 4px 4px rgba(0,0,0,0.25);color:#504742">Criar</h2>
 
-<h4>ItemVenda</h4>
+<h4 class="small-bold-text">ItemVenda</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="VendaId" class="control-label"></label>
-                <input asp-for="VendaId" class="form-control" value=@ViewData["VendaId"] />
+<div class="small-bold-text">
+    <div class="row justify-content-center">
+        <!-- Especificando o método POST -->
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+            <!-- VendaId preenchido automaticamente -->
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label asp-for="VendaId" class="control-label"></label>
+                    <input asp-for="VendaId" class="form-control" value="@ViewData["VendaId"]" readonly style="background-color: #d9d9d9; border-color: #504742;" />
+                </div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="Quantidade" class="control-label"></label>
-                <input asp-for="Quantidade" class="form-control" id="Quantidade" />
-                <span asp-validation-for="Quantidade" class="text-danger"></span>
+            <!-- Linha com Quantidade, Produto e Valor Unitário -->
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label asp-for="Quantidade" class="control-label"></label>
+                    <input asp-for="Quantidade" class="form-control" id="Quantidade" style="background-color: #d9d9d9; border-color: #504742;" />
+                    <span asp-validation-for="Quantidade" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="ProdutoId" class="control-label"></label>
+                    <select asp-for="ProdutoId" class="form-control" asp-items="ViewBag.ProdutoId" id="produtoId" style="background-color: #d9d9d9; border-color: #504742;"></select>
+                    <span asp-validation-for="ProdutoId" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-4">
+                    <label asp-for="ValorUnitario" class="control-label"></label>
+                    <input asp-for="ValorUnitario" class="form-control" id="ValorUnitario" style="background-color: #d9d9d9; border-color: #504742;" />
+                    <span asp-validation-for="ValorUnitario" class="text-danger"></span>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="ProdutoId" class="control-label"></label>
-                <select asp-for="ProdutoId" class="form-control" asp-items="ViewBag.ProdutoId" id="produtoId"></select>
+            <!-- Campo de ValorTotal preenchido automaticamente -->
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label asp-for="ValorTotal" class="control-label"></label>
+                    <input asp-for="ValorTotal" class="form-control" id="ValorTotal" readonly style="background-color: #d9d9d9; border-color: #504742;" />
+                    <span asp-validation-for="ValorTotal" class="text-danger"></span>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label asp-for="ValorUnitario" class="control-label"></label>
-                <input asp-for="ValorUnitario" class="form-control" id="ValorUnitario" />
-                <span asp-validation-for="ValorUnitario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ValorTotal" class="control-label"></label>
-                <input asp-for="ValorTotal" class="form-control" id="ValorTotal" />
-                <span asp-validation-for="ValorTotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <!-- Botões de Ação -->
+            <div class="form-group mt-3">
+                <input type="submit" value="Criar" class="btn" style="background-color: #B59879; border-color: #B59879; color: white; width: 10%;" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<!-- Botão Voltar -->
+<div class="text-back">
+    <a href="javascript:history.back()">Voltar</a>
 </div>
 
 @section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+    <script>
+        // Calcula automaticamente o valor total
+        document.getElementById("Quantidade").addEventListener("input", calcularTotal);
+        document.getElementById("ValorUnitario").addEventListener("input", calcularTotal);
 
-    }
+        function calcularTotal() {
+            const quantidade = parseFloat(document.getElementById("Quantidade").value) || 0;
+            const valorUnitario = parseFloat(document.getElementById("ValorUnitario").value) || 0;
+            const valorTotal = quantidade * valorUnitario;
+            document.getElementById("ValorTotal").value = valorTotal.toFixed(2);
+        }
+    </script>
 }

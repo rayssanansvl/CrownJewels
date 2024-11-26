@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ProjetoBackend.Data;
 using ProjetoBackend.Models;
@@ -23,23 +22,17 @@ namespace ProjetoBackend.Controllers
         public async Task<IActionResult> Index()
         {
             var servicos = await _context.Servicos.ToListAsync();
-            return View(servicos.OrderBy(s => s.Nome));
+            return View(servicos.OrderBy(s => s.Nome)); // Ordena por Nome antes de exibir
         }
 
         // GET: Servicos/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var servico = await _context.Servicos
                 .FirstOrDefaultAsync(m => m.ServicoId == id);
-            if (servico == null)
-            {
-                return NotFound();
-            }
+            if (servico == null) return NotFound();
 
             return View(servico);
         }
@@ -51,15 +44,13 @@ namespace ProjetoBackend.Controllers
         }
 
         // POST: Servicos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ServicoId,Nome,ValorServico")] Servico servico)
+        public async Task<IActionResult> Create([Bind("Nome,ValorServico")] Servico servico)
         {
             if (ModelState.IsValid)
             {
-                servico.ServicoId = Guid.NewGuid();
+                servico.ServicoId = Guid.NewGuid(); // Define o ID como um novo GUID
                 _context.Add(servico);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -70,37 +61,42 @@ namespace ProjetoBackend.Controllers
         // GET: Servicos/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var servico = await _context.Servicos.FindAsync(id);
-            if (servico == null)
-            {
-                return NotFound();
-            }
+            if (servico == null) return NotFound();
+
             return View(servico);
         }
 
         // POST: Servicos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: Servicos/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("ServicoId,Nome,ValorServico")] Servico servico)
         {
             if (id != servico.ServicoId)
             {
-                return NotFound();
+                return BadRequest("O ID fornecido não corresponde ao serviço a ser editado.");
             }
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(servico);
-                    await _context.SaveChangesAsync();
+                    var servicoExistente = await _context.Servicos.FindAsync(id);
+
+                    if (servicoExistente == null)
+                    {
+                        return NotFound("Serviço não encontrado.");
+                    }
+
+                    // Atualiza apenas os campos que podem ser editados
+                    servicoExistente.Nome = servico.Nome;
+                    servicoExistente.ValorServico = servico.ValorServico;
+
+                    _context.Servicos.Update(servicoExistente); // Atualiza o serviço existente
+                    await _context.SaveChangesAsync(); // Salva as alterações
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -108,30 +104,24 @@ namespace ProjetoBackend.Controllers
                     {
                         return NotFound();
                     }
-                    else
-                    {
-                        throw;
-                    }
+                    throw;
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(servico);
         }
+
 
         // GET: Servicos/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            if (id == null) return NotFound();
 
             var servico = await _context.Servicos
                 .FirstOrDefaultAsync(m => m.ServicoId == id);
-            if (servico == null)
-            {
-                return NotFound();
-            }
+            if (servico == null) return NotFound();
 
             return View(servico);
         }
@@ -145,12 +135,12 @@ namespace ProjetoBackend.Controllers
             if (servico != null)
             {
                 _context.Servicos.Remove(servico);
+                await _context.SaveChangesAsync();
             }
-
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
+        // Método privado para verificar se o serviço existe
         private bool ServicoExists(Guid id)
         {
             return _context.Servicos.Any(e => e.ServicoId == id);

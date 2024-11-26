@@ -600,3 +600,69 @@ a {
     text-align: left;
     width: 100%;
 }
+
+/* Estilos para o título da página */
+.page-title {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    color: #504742;
+    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 0;
+    padding: 0;
+    margin-top: 5rem;
+}
+
+/* Estilo para o texto de confirmação */
+.confirmation-text {
+    font-family: 'Arial', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #6e4c38;
+}
+
+/* Estilos para o container de detalhes */
+.details-container {
+    background-color: #f0e4d7;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Estilo para a lista de detalhes */
+.details-list {
+    background-color: #b59879;
+    color: white;
+    width: 100%;
+    margin-bottom: 70px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: #b59879;
+}
+
+/* Estilos para o formulário de ações */
+.form-actions {
+    text-align: center;
+}
+
+/* Estilos para o botão de deletar */
+.btn-delete {
+    background-color: #FF0400;
+    color: white;
+    width: 120px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+/* Estilos para o link de voltar */
+.btn-back {
+    color: #504742;
+    text-decoration: none;
+    margin-left: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}

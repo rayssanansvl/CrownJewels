@@ -22,8 +22,17 @@ namespace ProjetoBackend.Controllers
         // GET: ItensVendas
         public async Task<IActionResult> Index(Guid? id)
         {
-            var listaItens = await _context.ItensVenda.Include(i => i.Produto).Include(i => i.Venda).ToListAsync();
-            listaItens = listaItens.Where(i => i.VendaId == id).ToList();
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var listaItens = await _context.ItensVenda
+                .Include(i => i.Produto)
+                .Include(i => i.Venda)
+                .Where(i => i.VendaId == id)
+                .ToListAsync();
+
             ViewData["idVendaAtual"] = id;
             return View("Index", listaItens);
         }
@@ -57,8 +66,6 @@ namespace ProjetoBackend.Controllers
         }
 
         // POST: ItensVendas/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ItemVendaId,VendaId,ProdutoId,Quantidade,ValorUnitario,ValorTotal")] ItemVenda itemVenda)
@@ -68,10 +75,13 @@ namespace ProjetoBackend.Controllers
                 itemVenda.ItemVendaId = Guid.NewGuid();
                 _context.Add(itemVenda);
                 await _context.SaveChangesAsync();
-                //Selecionar todos os itens dessa venda e somar o valor total, e atualizar o valor total da venda
 
                 // lista de itens da venda
-                var listaItens = await _context.ItensVenda.Include(i => i.Produto).Include(i => i.Venda).Where(v => v.VendaId == itemVenda.VendaId).ToListAsync();
+                var listaItens = await _context.ItensVenda
+                    .Include(i => i.Produto)
+                    .Include(i => i.Venda)
+                    .Where(v => v.VendaId == itemVenda.VendaId)
+                    .ToListAsync();
 
                 // Calcular o valor total da venda
                 var valorTotalVenda = listaItens.Sum(i => i.ValorTotal);
@@ -83,8 +93,8 @@ namespace ProjetoBackend.Controllers
                 // Salvar mudança no banco de dados
                 await _context.SaveChangesAsync();
 
+                ViewData["idVendaAtual"] = itemVenda.VendaId;
                 return View("Index", listaItens);
-
             }
             ViewData["ProdutoId"] = new SelectList(_context.Produtos, "ProdutoId", "Nome", itemVenda.ProdutoId);
             ViewData["VendaId"] = new SelectList(_context.Vendas, "VendaId", "NotaFiscal", itemVenda.VendaId);
@@ -110,8 +120,7 @@ namespace ProjetoBackend.Controllers
         }
 
         // POST: ItensVendas/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: ItensVendas/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("ItemVendaId,VendaId,ProdutoId,Quantidade,ValorUnitario,ValorTotal")] ItemVenda itemVenda)
@@ -125,8 +134,31 @@ namespace ProjetoBackend.Controllers
             {
                 try
                 {
+                    // Atualizar o item da venda no banco de dados
                     _context.Update(itemVenda);
                     await _context.SaveChangesAsync();
+
+                    // Recalcular o valor total do item (ValorUnitario * Quantidade)
+                    itemVenda.ValorTotal = itemVenda.ValorUnitario * itemVenda.Quantidade;
+
+                    // Atualizar a lista de itens da venda
+                    var listaItens = await _context.ItensVenda
+                        .Include(i => i.Produto)
+                        .Include(i => i.Venda)
+                        .Where(i => i.VendaId == itemVenda.VendaId)
+                        .ToListAsync();
+
+                    // Calcular o valor total da venda
+                    var valorTotalVenda = listaItens.Sum(i => i.ValorTotal);
+
+                    // Atualizar o valor total da venda no banco de dados
+                    var venda = await _context.Vendas.FindAsync(itemVenda.VendaId);
+                    if (venda != null)
+                    {
+                        venda.ValorTotal = valorTotalVenda;
+                        _context.Update(venda); // Atualizar a venda com o novo valor total
+                        await _context.SaveChangesAsync(); // Salvar as mudanças da venda
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -139,12 +171,17 @@ namespace ProjetoBackend.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+
+                // Redireciona de volta para a lista de itens da venda
+                return RedirectToAction(nameof(Index), new { id = itemVenda.VendaId });
             }
+
+            // Caso o modelo não seja válido, carregue os dados para o formulário de edição
             ViewData["ProdutoId"] = new SelectList(_context.Produtos, "ProdutoId", "Nome", itemVenda.ProdutoId);
             ViewData["VendaId"] = new SelectList(_context.Vendas, "VendaId", "NotaFiscal", itemVenda.VendaId);
             return View(itemVenda);
         }
+
 
         // GET: ItensVendas/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
@@ -172,13 +209,32 @@ namespace ProjetoBackend.Controllers
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var itemVenda = await _context.ItensVenda.FindAsync(id);
+
+            // Se o item de venda foi encontrado, removê-lo
             if (itemVenda != null)
             {
+                var vendaId = itemVenda.VendaId;  // Guardar o ID da venda antes de remover o item
                 _context.ItensVenda.Remove(itemVenda);
+                await _context.SaveChangesAsync();
+
+                // Agora, vamos atualizar a lista de itens da venda
+                var listaItens = await _context.ItensVenda
+                    .Include(i => i.Produto)
+                    .Include(i => i.Venda)
+                    .Where(i => i.VendaId == vendaId)
+                    .ToListAsync();
+
+                // Atualizar o valor total da venda após a exclusão
+                var valorTotalVenda = listaItens.Sum(i => i.ValorTotal);
+                var venda = await _context.Vendas.FindAsync(vendaId);
+                venda.ValorTotal = valorTotalVenda;
+                await _context.SaveChangesAsync();
+
+                // Redirecionando para a lista de itens da venda (Index)
+                return View("Index", listaItens);
             }
 
-            await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return NotFound();
         }
 
         private bool ItemVendaExists(Guid id)
@@ -189,6 +245,12 @@ namespace ProjetoBackend.Controllers
         public double PrecoProduto(Guid id)
         {
             var produto = _context.Produtos.Where(p => p.ProdutoId == id).FirstOrDefault();
+
+            if (produto == null)
+            {
+                return 0; // ou outro valor adequado
+            }
+
             return produto.Preco;
         }
     }

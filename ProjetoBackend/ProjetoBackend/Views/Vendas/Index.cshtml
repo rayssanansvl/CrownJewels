@@ -36,7 +36,7 @@
                         @Html.DisplayFor(modelItem => item.NotaFiscal)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Cliente.Celular)
+                        @Html.DisplayFor(modelItem => item.Cliente.Nome)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DataVenda)
@@ -45,6 +45,9 @@
                         @Html.DisplayFor(modelItem => item.ValorTotal)
                     </td>
                     <td>
+                        <a asp-controller="ItensVendas" asp-action="Index" asp-route-id="@item.VendaId" class="text-decoration-none edit-icon">
+                            <i class="bi bi-bag-plus" style="color: cyan;"></i>
+                        </a>
                         <a asp-action="Edit" asp-route-id="@item.VendaId" class="text-decoration-none edit-icon">
                             <i class="bi bi-pencil"></i>
                         </a>

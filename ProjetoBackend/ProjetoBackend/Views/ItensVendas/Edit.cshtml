@@ -1,54 +1,71 @@
 ﻿@model ProjetoBackend.Models.ItemVenda
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Editar";
 }
 
-<h1>Edit</h1>
+<h2 class="m-0 p-0 mt-5 fw-bold" style="text-shadow:0 4px 4px rgba(0,0,0,0.25);color:#504742">Editar</h2>
 
-<h4>ItemVenda</h4>
+<h4 class="small-bold-text">ItemVenda</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="venda-create-container">
+    <div class="small-bold-text">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="venda-validation-summary text-danger mb-3"></div>
+
+            <!-- Campo oculto para ItemVendaId -->
             <input type="hidden" asp-for="ItemVendaId" />
-            <div class="form-group">
-                <label asp-for="VendaId" class="control-label"></label>
-                <select asp-for="VendaId" class="form-control" asp-items="ViewBag.VendaId"></select>
-                <span asp-validation-for="VendaId" class="text-danger"></span>
+
+            <!-- Linha 1: Venda e Produto -->
+            <div class="venda-row row mb-3">
+                <div class="venda-form-group form-group col-md-8">
+                    <label asp-for="VendaId" class="venda-label control-label"></label>
+                    <select asp-for="VendaId" class="venda-select form-control venda-input-custom" asp-items="ViewBag.VendaId"></select>
+                    <span asp-validation-for="VendaId" class="venda-validation text-danger"></span>
+                </div>
+                <div class="venda-form-group form-group col-md-4">
+                    <label asp-for="ProdutoId" class="venda-label control-label"></label>
+                    <select asp-for="ProdutoId" class="venda-select form-control venda-input-custom" asp-items="ViewBag.ProdutoId"></select>
+                    <span asp-validation-for="ProdutoId" class="venda-validation text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ProdutoId" class="control-label"></label>
-                <select asp-for="ProdutoId" class="form-control" asp-items="ViewBag.ProdutoId"></select>
-                <span asp-validation-for="ProdutoId" class="text-danger"></span>
+
+            <!-- Linha 2: Quantidade e Valor Unitário -->
+            <div class="venda-row row mb-4">
+                <div class="venda-form-group form-group col-md-8">
+                    <label asp-for="Quantidade" class="venda-label control-label"></label>
+                    <input asp-for="Quantidade" class="venda-input form-control venda-input-custom" />
+                    <span asp-validation-for="Quantidade" class="venda-validation text-danger"></span>
+                </div>
+                <div class="venda-form-group form-group col-md-4">
+                    <label asp-for="ValorUnitario" class="venda-label control-label"></label>
+                    <input asp-for="ValorUnitario" class="venda-input form-control venda-input-custom" />
+                    <span asp-validation-for="ValorUnitario" class="venda-validation text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Quantidade" class="control-label"></label>
-                <input asp-for="Quantidade" class="form-control" />
-                <span asp-validation-for="Quantidade" class="text-danger"></span>
+
+            <!-- Linha 3: Valor Total -->
+            <div class="venda-row row mb-4">
+                <div class="venda-form-group form-group col-md-12">
+                    <label asp-for="ValorTotal" class="venda-label control-label"></label>
+                    <input asp-for="ValorTotal" class="venda-input form-control venda-input-custom" disabled />
+                    <span asp-validation-for="ValorTotal" class="venda-validation text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="ValorUnitario" class="control-label"></label>
-                <input asp-for="ValorUnitario" class="form-control" />
-                <span asp-validation-for="ValorUnitario" class="text-danger"></span>
+
+            <!-- Botão Salvar e Link Voltar abaixo com espaçamento -->
+            <div class="form-group mt-3">
+                <input type="submit" value="Salvar" class="btn" style="background-color: #B59879; border-color: #B59879; color: white; width: 10%;" />
             </div>
-            <div class="form-group">
-                <label asp-for="ValorTotal" class="control-label"></label>
-                <input asp-for="ValorTotal" class="form-control" />
-                <span asp-validation-for="ValorTotal" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="text-back">
+                <a asp-action="Index" asp-controller="ItensVendas">Voltar</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

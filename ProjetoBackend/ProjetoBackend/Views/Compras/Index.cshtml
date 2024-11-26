@@ -14,7 +14,7 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.FornecedorId)
+                    Fornecedor
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.DataCompra)
@@ -30,7 +30,7 @@
             {
                 <tr class="custom-row-compra">
                     <td>
-                        @Html.DisplayFor(modelItem => item.FornecedorId)
+                        @Html.DisplayFor(modelItem => item.Fornecedor.Nome)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DataCompra)

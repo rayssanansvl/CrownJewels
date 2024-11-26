@@ -22,8 +22,13 @@ namespace ProjetoBackend.Controllers
         // GET: Produtos
         public async Task<IActionResult> Index()
         {
-            var produtos = await _context.Produtos.ToListAsync();
-            return View(produtos.OrderBy(p => p.Nome));
+            // Inclui as categorias associadas aos produtos
+            var produtos = await _context.Produtos
+                .Include(p => p.Categoria) // Garante o carregamento das categorias
+                .OrderBy(p => p.Nome)
+                .ToListAsync();
+
+            return View(produtos);
         }
 
         // GET: Produtos/Details/5
@@ -53,8 +58,6 @@ namespace ProjetoBackend.Controllers
         }
 
         // POST: Produtos/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProdutoId,Nome,Preco,Estoque,CategoriaId")] Produto produto)
@@ -88,8 +91,6 @@ namespace ProjetoBackend.Controllers
         }
 
         // POST: Produtos/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("ProdutoId,Nome,Preco,Estoque,CategoriaId")] Produto produto)
@@ -163,3 +164,5 @@ namespace ProjetoBackend.Controllers
         }
     }
 }
+
+

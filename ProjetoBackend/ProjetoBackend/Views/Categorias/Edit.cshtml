@@ -10,17 +10,20 @@
 
 <hr />
 <div class="small-bold-text">
-    <div class="row">
-        <div class="form-group">
-            <label asp-for="Nome" class="control-label"></label>
-            <input asp-for="Nome" class="form-control" style="background-color: #d9d9d9; border-color: #504742;         />
-            <span asp-validation-for="Nome" class="text-danger"></span>
+    <!-- Adicionando a tag <form> para a submissão dos dados -->
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="CategoriaId" />
+        <div class="row">
+            <div class="form-group">
+                <label asp-for="Nome" class="control-label"></label>
+                <input asp-for="Nome" class="form-control" style="background-color: #d9d9d9; border-color: #504742;" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            <div class="form-group mt-3">
+                <input type="submit" value="Salvar" class="btn" style="background-color: #B59879; border-color: #B59879; color: white; width: 10%;" />
+            </div>
         </div>
-        <div class="form-group mt-3">
-            <input type="submit" value="Criar" class="btn" style="background-color: #B59879; border-color: #B59879; color: white; width: 10%;" />
-        </div>
-
-    </div>
+    </form>
 </div>
 <div class="text-back">
     <a asp-action="Index">Voltar</a>
@@ -31,3 +34,4 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+

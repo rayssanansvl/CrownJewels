@@ -5,57 +5,65 @@
     var idVendaAtual = ViewData["idVendaAtual"];
 }
 
-<h1>Index</h1>
+<h2 class="m-0 p-0 mt-5 fw-bold" style="text-shadow:0 4px 4px rgba(0,0,0,0.25);color:#504742">Carrinho de Compras</h2>
 
 <p>
-    <a asp-action="Create" asp-route-id="@idVendaAtual">Create New</a>
+    <a asp-action="Create" asp-route-id="@idVendaAtual" class="create-link">Criar Novo</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Venda)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Produto)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Quantidade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ValorUnitario)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ValorTotal)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="table-responsive">
+    <table class="table custom-table-venda">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Venda.VendaId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Produto.Nome)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Quantidade)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ValorUnitario)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ValorTotal)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ItemVendaId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.ItemVendaId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.ItemVendaId">Delete</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Venda)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Produto)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Quantidade)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ValorUnitario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ValorTotal)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="custom-row-venda">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Venda.VendaId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Produto.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorUnitario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorTotal)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ItemVendaId" class="text-decoration-none edit-icon">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a asp-action="Delete" asp-route-id="@item.ItemVendaId" class="text-decoration-none delete-icon">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="text-back mt-3">
+    <a asp-controller="Vendas" asp-action="Index">Voltar</a>
+</div>

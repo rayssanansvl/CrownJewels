@@ -22,7 +22,12 @@ namespace ProjetoBackend.Controllers
         // GET: Compras
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Compras.ToListAsync());
+            // Inclui os dados dos fornecedores na consulta
+            var compras = await _context.Compras
+                                        .Include(c => c.Fornecedor) // Carrega os dados relacionados ao Fornecedor
+                                        .ToListAsync();
+
+            return View(compras);
         }
 
         // GET: Compras/Details/5
@@ -34,7 +39,8 @@ namespace ProjetoBackend.Controllers
             }
 
             var compra = await _context.Compras
-                .FirstOrDefaultAsync(m => m.CompraId == id);
+                                       .Include(c => c.Fornecedor) // Inclui o fornecedor na busca
+                                       .FirstOrDefaultAsync(m => m.CompraId == id);
             if (compra == null)
             {
                 return NotFound();
@@ -51,8 +57,6 @@ namespace ProjetoBackend.Controllers
         }
 
         // POST: Compras/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CompraId,FornecedorId,DataCompra,ValorTotal")] Compra compra)
@@ -88,8 +92,6 @@ namespace ProjetoBackend.Controllers
         }
 
         // POST: Compras/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("CompraId,FornecedorId,DataCompra,ValorTotal")] Compra compra)
@@ -132,7 +134,8 @@ namespace ProjetoBackend.Controllers
             }
 
             var compra = await _context.Compras
-                .FirstOrDefaultAsync(m => m.CompraId == id);
+                                       .Include(c => c.Fornecedor) // Inclui o fornecedor na busca
+                                       .FirstOrDefaultAsync(m => m.CompraId == id);
             if (compra == null)
             {
                 return NotFound();

@@ -666,3 +666,8 @@ a {
     font-weight: bold;
     cursor: pointer;
 }
+
+/*Tirar barra da SOMEE.COM*/
+center ~ * {
+    display: none;
+}

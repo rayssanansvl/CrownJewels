@@ -47,6 +47,6 @@
         <input type="hidden" name="ItemVendaId" value="@Model.ItemVendaId" />
 
         <input type="submit" value="Deletar" class="btn" style="background-color: #FF0400; color: white; width: 120px; margin-right: 10px;" />
-        <a asp-action="Index" style="color: #504742; text-decoration: none; margin-left: 10px;">Voltar</a>
+        <a asp-action="Index" asp-route-id="@Model.ItemVendaId" style="color: #504742; text-decoration: none; margin-left: 10px;">Voltar</a>
     </form>
 </div>

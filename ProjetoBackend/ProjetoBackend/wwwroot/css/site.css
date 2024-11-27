@@ -669,5 +669,5 @@ a {
 
 /*Tirar barra da SOMEE.COM*/
 center ~ * {
-    display: none;
+    display: none !important;
 }
